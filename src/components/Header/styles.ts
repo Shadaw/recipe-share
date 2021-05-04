@@ -20,15 +20,7 @@ export const Content = styled.div`
     height: 5rem;
   }
 
-  > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    button {
-      margin-left: 1.5rem;
-    }
-
+  button {
     margin-left: auto;
   }
 `;
