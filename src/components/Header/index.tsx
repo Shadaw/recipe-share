@@ -1,4 +1,3 @@
-import { FaSearch } from 'react-icons/fa';
 import SignInButton from 'components/SignInButton';
 
 import { Container, Content, NavItem } from './styles';
@@ -12,10 +11,7 @@ const Header = () => {
           <NavItem active>Home</NavItem>
           <NavItem>Receitas</NavItem>
         </nav>
-        <div>
-          <FaSearch size="20" />
-          <SignInButton />
-        </div>
+        <SignInButton />
       </Content>
     </Container>
   );
