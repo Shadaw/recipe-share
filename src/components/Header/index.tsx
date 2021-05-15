@@ -1,6 +1,8 @@
 import SignInButton from 'components/SignInButton';
 
-import { Container, Content, NavItem } from './styles';
+import ActiveLink from 'components/ActiveLink';
+
+import { Container, Content } from './styles';
 
 const Header = () => {
   return (
@@ -8,8 +10,12 @@ const Header = () => {
       <Content>
         <img src="/images/logo.svg" alt="RecipesShare" />
         <nav>
-          <NavItem active>Home</NavItem>
-          <NavItem>Receitas</NavItem>
+          <ActiveLink href="/">
+            <a>Home</a>
+          </ActiveLink>
+          <ActiveLink href="/recipes">
+            <a>Receitas</a>
+          </ActiveLink>
         </nav>
         <SignInButton />
       </Content>
