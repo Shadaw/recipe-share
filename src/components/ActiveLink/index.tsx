@@ -10,13 +10,7 @@ interface ActiveLinkProps extends LinkProps {
 
 const ActiveLink = ({ children, ...rest }: ActiveLinkProps) => {
   const { asPath } = useRouter();
-
-  console.log(asPath);
-  console.log(rest.href);
-
   const active = asPath === rest.href;
-
-  console.log(active);
 
   return (
     <Link {...rest}>
