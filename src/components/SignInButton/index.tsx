@@ -1,20 +1,33 @@
-import { FaGoogle } from 'react-icons/fa';
-import { FiX } from 'react-icons/fi';
+import { useCallback } from 'react';
+import { FaUser } from 'react-icons/fa';
+
+import { useAuth } from 'hooks/auth';
+import { useModal } from 'hooks/modal';
+
 import { Container } from './styles';
 
 const SignInButton = () => {
-  const session = false;
+  const { user, signOut } = useAuth();
+  const { setIsOpen } = useModal();
 
-  return session ? (
-    <Container type="button">
-      <FaGoogle color="#fff" />
-      Gustavo Alexandre da Silva
-      <FiX color="#fff" />
+  const handleOpenModal = useCallback(() => {
+    setIsOpen(true);
+  }, [setIsOpen]);
+
+  const handleLogout = useCallback(() => {
+    signOut();
+  }, [signOut]);
+
+  return user ? (
+    <Container type="button" onClick={handleLogout}>
+      {user.name}
     </Container>
   ) : (
-    <Container type="button">
-      <FaGoogle color="#fff" />
-      Logar com google
+    <Container type="button" onClick={handleOpenModal}>
+      <div>
+        <FaUser />
+      </div>
+      Login
     </Container>
   );
 };

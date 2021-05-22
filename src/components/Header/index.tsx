@@ -1,5 +1,4 @@
 import SignInButton from 'components/SignInButton';
-
 import ActiveLink from 'components/ActiveLink';
 
 import { Container, Content } from './styles';
@@ -10,12 +9,8 @@ const Header = () => {
       <Content>
         <img src="/images/logo.svg" alt="RecipesShare" />
         <nav>
-          <ActiveLink href="/">
-            <a>Home</a>
-          </ActiveLink>
-          <ActiveLink href="/recipes">
-            <a>Receitas</a>
-          </ActiveLink>
+          <ActiveLink href="/">Home</ActiveLink>
+          <ActiveLink href="/recipes">Receitas</ActiveLink>
         </nav>
         <SignInButton />
       </Content>
