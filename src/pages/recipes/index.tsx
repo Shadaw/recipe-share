@@ -13,6 +13,7 @@ type Recipe = {
   description: string;
   difficulty: string;
   time: number;
+  image: string;
   user: {
     name: string;
     email: string;
