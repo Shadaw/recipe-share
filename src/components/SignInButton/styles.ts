@@ -20,16 +20,18 @@ export const Container = styled.button`
     filter: brightness(0.8);
   }
 
-  svg {
-    width: 20px;
+  div {
+    display: flex;
+    align-items: center;
+    background-color: var(--zero);
+    border-radius: 20px;
+    padding: 5px;
     height: 20px;
+    width: 20px;
+    margin-right: 1rem;
+  }
 
-    &:first-child {
-      margin-right: 1rem;
-    }
-
-    &:not(:first-child) {
-      margin-left: 1rem;
-    }
+  svg {
+    color: var(--primary);
   }
 `;
