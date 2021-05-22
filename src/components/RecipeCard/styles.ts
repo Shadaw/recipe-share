@@ -3,35 +3,51 @@ import styled from 'styled-components';
 export const Container = styled.div`
   background-color: var(--gray);
   border: 1px solid var(--gray-200);
+  height: 200px;
+  border-radius: 5px;
 
-  h2 {
-    margin-top: 0.5rem;
-    color: var(--negative);
-  }
-
-  p {
-    margin-top: 0.5rem;
-    color: #4a4a4a;
-  }
+  display: flex;
 
   img {
-    width: 100%;
-    height: 250px;
+    mask-image: linear-gradient(to left, transparent 0%, black 100%);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 40%;
     object-fit: cover;
   }
 `;
 
 export const Content = styled.div`
-  padding: 1rem 1.5rem 2rem 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+
+  h2 {
+    font-size: 1.5rem;
+    color: var(--negative);
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #777777;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Information = styled.div`
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 
   span {
-    font-size: 16px;
-    color: #4a4a4a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & + span {
+      margin-left: 1.5rem;
+    }
 
     svg {
       margin-right: 5px;

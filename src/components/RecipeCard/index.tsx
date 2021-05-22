@@ -3,11 +3,17 @@ import { FiClock, FiThumbsUp } from 'react-icons/fi';
 import { Container, Content, Information } from './styles';
 
 type Recipe = {
-  id: number;
+  id: string;
   name: string;
   description: string;
-  dificult: string;
-  image: string;
+  difficulty: string;
+  time: number;
+  user: {
+    name: string;
+    email: string;
+  };
+  updated_at: string;
+  created_at: string;
 };
 
 type RecipeCardProps = {
@@ -17,8 +23,15 @@ type RecipeCardProps = {
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
   return (
     <Container>
-      <img src={recipe.image} alt={recipe.name} />
+      <img
+        src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/carvao-mineral.jpg"
+        alt={recipe.name}
+      />
       <Content>
+        <div>
+          <h2>{recipe.name}</h2>
+          <p>{recipe.description}</p>
+        </div>
         <Information>
           <span>
             <FiClock />
@@ -29,10 +42,6 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
             Facil
           </span>
         </Information>
-        <div>
-          <h2>{recipe.name}</h2>
-          <p>{recipe.description}</p>
-        </div>
       </Content>
     </Container>
   );

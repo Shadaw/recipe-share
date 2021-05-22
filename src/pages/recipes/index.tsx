@@ -4,66 +4,36 @@ import RecipeCard from 'components/RecipeCard';
 
 import { Container } from 'styles/recipes';
 
-const recipes = [
-  {
-    id: 1,
-    name: 'Bolo de cenoura',
-    description: 'bolo de cenoura com cobertura de chocolate',
-    dificult: 'easy',
-    image:
-      'https://img.itdg.com.br/tdg/images/recipes/000/000/023/323619/323619_original.jpg?mode=crop&width=710&height=400',
-  },
-  {
-    id: 2,
-    name: 'Macaronada',
-    description: 'Macaronada com molho rosa',
-    dificult: 'medium',
-    image:
-      'https://img.itdg.com.br/tdg/images/recipes/000/000/023/323619/323619_original.jpg?mode=crop&width=710&height=400',
-  },
-  {
-    id: 3,
-    name: 'Macaronada',
-    description: 'Macaronada com molho rosa',
-    dificult: 'medium',
-    image:
-      'https://img.itdg.com.br/tdg/images/recipes/000/000/023/323619/323619_original.jpg?mode=crop&width=710&height=400',
-  },
-  {
-    id: 4,
-    name: 'Macaronada',
-    description: 'Macaronada com molho rosa',
-    dificult: 'medium',
-    image:
-      'https://img.itdg.com.br/tdg/images/recipes/000/000/023/323619/323619_original.jpg?mode=crop&width=710&height=400',
-  },
-  {
-    id: 5,
-    name: 'Macaronada',
-    description: 'Macaronada com molho rosa',
-    dificult: 'medium',
-    image:
-      'https://img.itdg.com.br/tdg/images/recipes/000/000/023/323619/323619_original.jpg?mode=crop&width=710&height=400',
-  },
-  {
-    id: 6,
-    name: 'Macaronada',
-    description: 'Macaronada com molho rosa',
-    dificult: 'medium',
-    image:
-      'https://img.itdg.com.br/tdg/images/recipes/000/000/023/323619/323619_original.jpg?mode=crop&width=710&height=400',
-  },
-  {
-    id: 7,
-    name: 'Macaronada',
-    description: 'Macaronada com molho rosa',
-    dificult: 'medium',
-    image:
-      'https://img.itdg.com.br/tdg/images/recipes/000/000/023/323619/323619_original.jpg?mode=crop&width=710&height=400',
-  },
-];
+import api from 'services/api';
+import { useCallback, useEffect, useState } from 'react';
+
+type Recipe = {
+  id: string;
+  name: string;
+  description: string;
+  difficulty: string;
+  time: number;
+  user: {
+    name: string;
+    email: string;
+  };
+  updated_at: string;
+  created_at: string;
+};
 
 export default function Recipes() {
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+
+  const requestRecipes = useCallback(async () => {
+    const response = await api.get('/recipes');
+
+    setRecipes(response.data);
+  }, []);
+
+  useEffect(() => {
+    requestRecipes();
+  }, [requestRecipes]);
+
   return (
     <>
       <Head>
