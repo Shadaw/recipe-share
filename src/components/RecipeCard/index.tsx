@@ -8,6 +8,7 @@ type Recipe = {
   description: string;
   difficulty: string;
   time: number;
+  image: string;
   user: {
     name: string;
     email: string;
@@ -23,10 +24,7 @@ type RecipeCardProps = {
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
   return (
     <Container>
-      <img
-        src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/carvao-mineral.jpg"
-        alt={recipe.name}
-      />
+      <img src={recipe.image} alt={recipe.name} />
       <Content>
         <div>
           <h2>{recipe.name}</h2>
