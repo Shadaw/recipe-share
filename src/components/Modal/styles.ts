@@ -11,7 +11,7 @@ export const Background = styled.div`
   align-items: center;
   justify-content: center;
 
-  z-index: 10;
+  z-index: var(--overlay);
 `;
 
 export const Container = styled.div`

@@ -11,6 +11,7 @@ export const NavItem = styled.a<NavItemProps>`
   height: 5rem;
   line-height: 5rem;
   color: var(--negative);
+  cursor: pointer;
 
   transition: color 0.2s;
 
