@@ -4,24 +4,22 @@ import { FaUser } from 'react-icons/fa';
 import { useAuth } from 'hooks/auth';
 import { useModal } from 'hooks/modal';
 
+import Dropdown from 'components/Dropdown';
+
 import { Container } from './styles';
 
 const SignInButton = () => {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   const { setIsOpen } = useModal();
 
   const handleOpenModal = useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
 
-  const handleLogout = useCallback(() => {
-    signOut();
-  }, [signOut]);
-
   return user ? (
-    <Container type="button" onClick={handleLogout}>
-      {user.name}
-    </Container>
+    <Dropdown>
+      <Container type="button">{user.name.substr(0, 1)}</Container>
+    </Dropdown>
   ) : (
     <Container type="button" onClick={handleOpenModal}>
       <div>
