@@ -1,11 +1,12 @@
+import { useCallback, useEffect, useState } from 'react';
 import Head from 'next/head';
 
+import api from 'services/api';
+
+import LoadingCards from 'components/LoadingCards';
 import RecipeCard from 'components/RecipeCard';
 
 import { Container } from 'styles/recipes';
-
-import api from 'services/api';
-import { useCallback, useEffect, useState } from 'react';
 
 type Recipe = {
   id: string;
@@ -24,11 +25,18 @@ type Recipe = {
 
 export default function Recipes() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [, setError] = useState(false);
 
   const requestRecipes = useCallback(async () => {
-    const response = await api.get('/recipes');
-
-    setRecipes(response.data);
+    setError(false);
+    try {
+      const response = await api.get('/recipes');
+      setRecipes(response.data);
+    } catch {
+      setError(false);
+    }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -42,9 +50,9 @@ export default function Recipes() {
       </Head>
 
       <Container>
-        {recipes.map(recipe => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
+        {loading && <LoadingCards />}
+        {!loading &&
+          recipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
       </Container>
     </>
   );
