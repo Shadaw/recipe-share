@@ -11,6 +11,9 @@ export default createGlobalStyle`
     --gray-200: #e6e6e6;
     --gray-300: #dadada;
     --background: #f9f9f9;
+
+    --always-on-top: 11;
+    --overlay: 10;
   }
 
   * {
@@ -34,6 +37,10 @@ export default createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
+  }
+
+  *[aria-hidden="true"] {
+    visibility: hidden;
   }
 
   @media (max-width: 1080px) {

@@ -20,7 +20,8 @@ export const Content = styled.div`
     height: 5rem;
   }
 
-  button {
+  button,
+  > div {
     margin-left: auto;
   }
 `;

@@ -1,9 +1,17 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
 import { Container, Hero, SearchButton } from '../styles/home';
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleRedirectToRecipes = useCallback(() => {
+    router.push('recipes');
+  }, [router]);
+
   return (
     <>
       <Head>
@@ -16,7 +24,7 @@ export default function Home() {
           <h1>
             Pesquise e compartilhe <span>Receitas</span>.
           </h1>
-          <SearchButton>
+          <SearchButton onClick={handleRedirectToRecipes}>
             Buscar receitas
             <FaArrowRight />
           </SearchButton>
