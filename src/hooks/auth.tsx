@@ -21,6 +21,7 @@ type SignInCredentials = {
 
 type AuthContextData = {
   user: Record<string, string>;
+  token: string;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
 };
@@ -73,7 +74,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user: data.user, token: data.token, signIn, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );
