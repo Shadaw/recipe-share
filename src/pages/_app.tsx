@@ -10,16 +10,18 @@ import GlobalStyles from 'styles/global';
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <AppProvider>
-      <Head>
-        <title>Recipes share</title>
-        <meta name="description" content="Recipes share" />
-      </Head>
-      <Header />
+    <>
       <GlobalStyles />
-      <Modal />
-      <Component {...pageProps} />
-    </AppProvider>
+      <AppProvider>
+        <Head>
+          <title>Recipes share</title>
+          <meta name="description" content="Recipes share" />
+        </Head>
+        <Header />
+        <Modal />
+        <Component {...pageProps} />
+      </AppProvider>
+    </>
   );
 }
 
