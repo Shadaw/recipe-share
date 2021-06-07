@@ -45,7 +45,7 @@ const Modal = () => {
           </button>
         </Header>
         <Content onSubmit={handleSubmit(handleLogin)}>
-          <img src="images/logo-min.svg" alt="livro de culinaria" />
+          <img src="/images/logo-min.svg" alt="livro de culinaria" />
           {error && <ErrorBox>E-mail e/ou senha incorretas</ErrorBox>}
           <label>
             E-mail
