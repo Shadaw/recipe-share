@@ -36,6 +36,6 @@ export const Preview = styled.div`
   min-height: 212px;
   background-color: var(--zero);
 
-  margin-top: -2rem;
+  margin-top: calc(-2rem + 5px);
   margin-bottom: 2rem;
 `;
