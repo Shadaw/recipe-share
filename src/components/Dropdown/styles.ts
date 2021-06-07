@@ -36,7 +36,7 @@ export const Content = styled.div`
 `;
 
 export const Overlay = styled.div`
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
   bottom: 0;

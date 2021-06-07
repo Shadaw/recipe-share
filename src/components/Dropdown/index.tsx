@@ -1,6 +1,6 @@
 import { ReactNode, useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
-import { FaUser, FaPlus, FaSignOutAlt } from 'react-icons/fa';
+import { FaUser, FaPlus, FaBook, FaSignOutAlt } from 'react-icons/fa';
 
 import { Container, Title, Content, Overlay, DropdownItems } from './styles';
 import { useAuth } from 'hooks/auth';
@@ -22,7 +22,12 @@ const Dropdown = ({ children }: DropdownProps) => {
 
   const handleRedirectToNewRecipe = useCallback(() => {
     setIsOpen(false);
-    push('new');
+    push('/new');
+  }, [push]);
+
+  const handleRedirectToProfile = useCallback(() => {
+    setIsOpen(false);
+    push('/profile');
   }, [push]);
 
   return (
@@ -30,9 +35,13 @@ const Dropdown = ({ children }: DropdownProps) => {
       <Title onClick={() => setIsOpen(!isOpen)}>{children}</Title>
       <Content aria-hidden={!isOpen}>
         <DropdownItems>
-          <div>
+          <div onClick={handleRedirectToProfile}>
             <FaUser />
             <p>Meu perfil</p>
+          </div>
+          <div onClick={handleRedirectToNewRecipe}>
+            <FaBook />
+            <p>Minhas Receitas</p>
           </div>
           <div onClick={handleRedirectToNewRecipe}>
             <FaPlus />
