@@ -42,7 +42,11 @@ export const TextareaWithPreview = ({
           <Markdown>{preview}</Markdown>
         </Preview>
       )}
-      <button title="visualizar" onClick={() => setShowPreview(!showPreview)}>
+      <button
+        title="visualizar"
+        type="button"
+        onClick={() => setShowPreview(!showPreview)}
+      >
         {showPreview ? <FiEyeOff /> : <FiEye />}
       </button>
     </Container>
