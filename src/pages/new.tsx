@@ -6,6 +6,7 @@ import { useAuth } from 'hooks/auth';
 import api from 'services/api';
 
 import ImageUpload from 'components/ImageUpload';
+import TextareaWithPreview from 'components/TextareaWithPreview';
 
 import { Container, Footer } from 'styles/new';
 import { GetServerSideProps } from 'next';
@@ -66,26 +67,24 @@ export default function New() {
             <input {...register('name', { required: true })} type="text" />
           </label>
 
-          <label>
-            Descrição
-            <textarea
-              rows={10}
-              {...register('description', { required: true })}
-            ></textarea>
-          </label>
+          <TextareaWithPreview label="Descrição" register={register} />
 
           <div>
             <label>
               Dificuldade
               <select {...register('difficulty', { required: true })}>
-                <option value="easy">Facil</option>
-                <option value="medium">Medio</option>
-                <option value="hard">Dificil</option>
+                <option value="easy">Fácil</option>
+                <option value="medium">Médio</option>
+                <option value="hard">Difícil</option>
               </select>
             </label>
             <label>
               Tempo
-              <input {...register('time', { required: true })} type="text" />
+              <input
+                {...register('time', { required: true })}
+                placeholder="em minutos..."
+                type="text"
+              />
             </label>
           </div>
 
