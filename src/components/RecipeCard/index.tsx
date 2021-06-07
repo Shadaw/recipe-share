@@ -1,6 +1,18 @@
-import { FiClock, FiThumbsUp } from 'react-icons/fi';
+import { useRouter } from 'next/router';
+import { useCallback, useMemo } from 'react';
+import { FiCalendar, FiClock, FiThumbsUp } from 'react-icons/fi';
 
 import { Container, Content, Information } from './styles';
+
+type difficultyOptions = {
+  [key: string]: string;
+};
+
+const difficulty: difficultyOptions = {
+  easy: 'Fácil',
+  medium: 'Médio',
+  hard: 'Difícil',
+};
 
 type Recipe = {
   id: string;
@@ -22,8 +34,19 @@ type RecipeCardProps = {
 };
 
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
+  const router = useRouter();
+
+  const formatedDate = useMemo(
+    () => new Date(recipe.updated_at).toLocaleDateString(),
+    [recipe.updated_at],
+  );
+
+  const handleRedirectToExpandRecipe = useCallback(() => {
+    router.push(`recipe/${recipe.id}`);
+  }, [recipe.id, router]);
+
   return (
-    <Container>
+    <Container onClick={handleRedirectToExpandRecipe}>
       <img src={recipe.image} alt={recipe.name} />
       <Content>
         <div>
@@ -32,12 +55,16 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
         </div>
         <Information>
           <span>
-            <FiClock />
-            30 minutes
+            <FiCalendar />
+            {formatedDate}
           </span>
           <span>
             <FiThumbsUp />
-            Facil
+            {difficulty[`${recipe.difficulty}`]}
+          </span>
+          <span>
+            <FiClock />
+            {recipe.time} minutos
           </span>
         </Information>
       </Content>
