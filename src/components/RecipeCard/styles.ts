@@ -5,6 +5,7 @@ export const Container = styled.div`
   border: 1px solid var(--gray-200);
   height: 200px;
   border-radius: 5px;
+  cursor: pointer;
 
   display: flex;
 
@@ -39,6 +40,7 @@ export const Content = styled.div`
 export const Information = styled.div`
   display: flex;
   align-items: center;
+  color: var(--gray-900);
 
   span {
     display: flex;
@@ -46,11 +48,12 @@ export const Information = styled.div`
     justify-content: center;
 
     & + span {
-      margin-left: 1.5rem;
+      margin-left: 2.5rem;
     }
 
     svg {
-      margin-right: 5px;
+      color: var(--negative);
+      margin-right: 10px;
     }
   }
 `;
