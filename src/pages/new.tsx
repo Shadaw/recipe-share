@@ -22,12 +22,6 @@ export default function New() {
   const { token } = useAuth();
 
   const { register, handleSubmit } = useForm<FormProps>({
-    defaultValues: {
-      name: 'teste integração',
-      description: 'teste integração',
-      difficulty: 'easy',
-      time: 10,
-    },
     mode: 'onChange',
   });
 
