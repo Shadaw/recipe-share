@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useCallback, useMemo } from 'react';
 import { FiCalendar, FiClock, FiThumbsUp } from 'react-icons/fi';
+import removeMd from 'remove-markdown';
 
 import { Container, Content, Information } from './styles';
 
@@ -51,7 +52,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
       <Content>
         <div>
           <h2>{recipe.name}</h2>
-          <p>{recipe.description}</p>
+          <p>{removeMd(recipe.description)}</p>
         </div>
         <Information>
           <span>

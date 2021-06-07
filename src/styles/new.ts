@@ -13,9 +13,13 @@ export const Container = styled.main`
     display: flex;
     flex-direction: column;
 
-    div {
+    > div {
       display: flex;
       align-items: center;
+
+      label:last-child {
+        margin-left: 3rem;
+      }
     }
 
     label {
@@ -27,6 +31,7 @@ export const Container = styled.main`
     input:not([type='file']),
     textarea,
     select {
+      margin-top: 5px;
       width: 100%;
       border: 1px solid var(--gray-200);
       padding: 10px;

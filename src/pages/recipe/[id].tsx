@@ -6,6 +6,7 @@ import { FiCalendar, FiClock, FiThumbsUp } from 'react-icons/fi';
 import api from 'services/api';
 
 import Comments from 'components/Comments';
+import Markdown from 'components/Markdown';
 
 import { Container, Info } from 'styles/recipe';
 
@@ -75,7 +76,7 @@ export default function Recipes({ recipe }: RecipesProps) {
 
         <h1>{recipe.name}</h1>
 
-        <p>{recipe.description}</p>
+        <Markdown>{recipe.description}</Markdown>
 
         <Comments recipe_id={recipe.id} />
       </Container>
