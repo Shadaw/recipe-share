@@ -21,6 +21,25 @@ export const Container = styled.div`
   background-color: var(--zero);
   position: relative;
   padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: var(--always-on-top);
+
+  > button {
+    width: max-content;
+    border: none;
+    background: transparent;
+    color: var(--primary);
+    border-bottom: 1px solid var(--primary);
+    filter: brightness(0.8);
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(1);
+    }
+  }
 `;
 
 export const Header = styled.div`
@@ -43,66 +62,4 @@ export const Header = styled.div`
       font-size: 2rem;
     }
   }
-`;
-
-export const Content = styled.form`
-  height: calc(100% - 29px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    margin-bottom: 2rem;
-    width: 100px;
-    height: 100px;
-  }
-
-  label {
-    width: 100%;
-    line-height: 2rem;
-
-    & + label {
-      margin-top: 1rem;
-    }
-  }
-
-  input {
-    width: 100%;
-    border: 1px solid var(--gray-200);
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
-
-    &:focus {
-      border-color: var(--gray-300);
-    }
-  }
-
-  button {
-    width: 100%;
-    margin-top: 1.5rem;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    color: var(--zero);
-    background-color: var(--primary);
-    transition: filter 0.2s;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
-  }
-`;
-
-export const ErrorBox = styled.div`
-  width: 100%;
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: var(--primary);
-  color: var(--zero);
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 2rem;
 `;
