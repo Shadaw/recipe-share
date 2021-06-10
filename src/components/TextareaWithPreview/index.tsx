@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-import { FormProps } from 'pages/new';
+import { FormProps } from 'screens/New';
 
 import Markdown from 'components/Markdown';
 

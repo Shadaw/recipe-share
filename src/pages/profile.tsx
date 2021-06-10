@@ -1,20 +1,8 @@
 import { GetServerSideProps } from 'next';
-import Head from 'next/head';
-import { Container } from 'styles/profile';
 
-export default function Profile() {
-  return (
-    <>
-      <Head>
-        <title>Perfil | RecipesShare</title>
-      </Head>
+import ProfileScreen from 'screens/Profile';
 
-      <Container>
-        <h1>Perfil</h1>
-      </Container>
-    </>
-  );
-}
+const Profile = () => <ProfileScreen />;
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const token = req.cookies['@RecipesShare:token'];
@@ -32,3 +20,5 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     props: {},
   };
 };
+
+export default Profile;

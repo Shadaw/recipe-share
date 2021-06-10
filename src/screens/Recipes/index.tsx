@@ -6,7 +6,7 @@ import api from 'services/api';
 import LoadingCards from 'components/LoadingCards';
 import RecipeCard from 'components/RecipeCard';
 
-import { Container } from 'styles/recipes';
+import { Container } from './styles';
 
 type Recipe = {
   id: string;
@@ -23,7 +23,7 @@ type Recipe = {
   created_at: string;
 };
 
-export default function Recipes() {
+const Recipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);
   const [, setError] = useState(false);
@@ -56,4 +56,6 @@ export default function Recipes() {
       </Container>
     </>
   );
-}
+};
+
+export default Recipes;

@@ -1,7 +1,7 @@
 import { UseFormRegister } from 'react-hook-form';
 import { Container } from './styles';
 
-import { FormProps } from 'pages/new';
+import { FormProps } from 'screens/New';
 import { useCallback, useState } from 'react';
 
 type ImageUpload = {
