@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
 import Head from 'next/head';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 
 import { useAuth } from 'hooks/auth';
 import api from 'services/api';
@@ -8,9 +10,7 @@ import api from 'services/api';
 import ImageUpload from 'components/ImageUpload';
 import TextareaWithPreview from 'components/TextareaWithPreview';
 
-import { Container, Footer } from 'styles/new';
-import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
+import { Container, Footer, Button } from 'styles/new';
 
 export type FormProps = {
   name: string;
@@ -24,8 +24,15 @@ export default function New() {
   const router = useRouter();
   const { token } = useAuth();
 
-  const { register, handleSubmit } = useForm<FormProps>({
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm<FormProps>({
     mode: 'onChange',
+    defaultValues: {
+      difficulty: 'easy',
+    },
   });
 
   const handleCreateNewRecipe: SubmitHandler<FormProps> = useCallback(
@@ -76,7 +83,7 @@ export default function New() {
           <div>
             <label>
               Dificuldade
-              <select {...register('difficulty', { required: true })}>
+              <select value="" {...register('difficulty', { required: true })}>
                 <option value="easy">Fácil</option>
                 <option value="medium">Médio</option>
                 <option value="hard">Difícil</option>
@@ -87,13 +94,15 @@ export default function New() {
               <input
                 {...register('time', { required: true })}
                 placeholder="em minutos..."
-                type="text"
+                type="number"
               />
             </label>
           </div>
 
           <Footer>
-            <button type="submit">Criar</button>
+            <Button disabled={!isValid} type="submit">
+              Criar
+            </Button>
           </Footer>
         </form>
       </Container>

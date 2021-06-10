@@ -25,7 +25,7 @@ const ImageUpload = ({ register, value = '' }: ImageUpload) => {
   return (
     <Container>
       {!previewImage ? (
-        'Selecione sua image'
+        'Selecione sua imagem'
       ) : (
         <div>
           <img src={previewImage}></img>
