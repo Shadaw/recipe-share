@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.main`
   max-width: 1120px;
@@ -78,4 +78,22 @@ export const Footer = styled.div`
       filter: brightness(0.9);
     }
   }
+`;
+
+type ButtonProps = {
+  disabled: boolean;
+};
+
+export const Button = styled.button<ButtonProps>`
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      filter: brightness(0.8);
+      cursor: not-allowed;
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.6);
+      }
+    `}
 `;
