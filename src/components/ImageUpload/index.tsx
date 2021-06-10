@@ -6,15 +6,19 @@ import { useCallback, useState } from 'react';
 
 type ImageUpload = {
   register: UseFormRegister<FormProps>;
+  value?: string;
 };
 
-const ImageUpload = ({ register }: ImageUpload) => {
-  const [previewImage, setPreviewImage] = useState('');
+const ImageUpload = ({ register, value = '' }: ImageUpload) => {
+  const [previewImage, setPreviewImage] = useState(value);
 
   const handleChangeImagePreview = useCallback((image: File[]) => {
     const selectedImage = Array.from(image);
 
-    setPreviewImage(URL.createObjectURL(selectedImage[0]));
+    if (selectedImage) {
+      setPreviewImage(URL.createObjectURL(selectedImage[0]));
+    }
+
     return true;
   }, []);
 

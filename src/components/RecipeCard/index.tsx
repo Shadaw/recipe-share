@@ -1,9 +1,15 @@
 import { useRouter } from 'next/router';
 import { useCallback, useMemo } from 'react';
-import { FiCalendar, FiClock, FiThumbsUp } from 'react-icons/fi';
+import {
+  FiCalendar,
+  FiClock,
+  FiThumbsUp,
+  FiTrash,
+  FiEdit2,
+} from 'react-icons/fi';
 import removeMd from 'remove-markdown';
 
-import { Container, Content, Information } from './styles';
+import { Container, Content, Information, ActionButtons } from './styles';
 
 type difficultyOptions = {
   [key: string]: string;
@@ -32,9 +38,17 @@ type Recipe = {
 
 type RecipeCardProps = {
   recipe: Recipe;
+  redirect?: boolean;
+  handleEdit?: (id: string) => void;
+  handleDelete?: (id: string) => void;
 };
 
-const RecipeCard = ({ recipe }: RecipeCardProps) => {
+const RecipeCard = ({
+  recipe,
+  redirect = true,
+  handleDelete,
+  handleEdit,
+}: RecipeCardProps) => {
   const router = useRouter();
 
   const formatedDate = useMemo(
@@ -47,9 +61,24 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
   }, [recipe.id, router]);
 
   return (
-    <Container onClick={handleRedirectToExpandRecipe}>
+    <Container
+      redirect={redirect}
+      onClick={redirect ? handleRedirectToExpandRecipe : undefined}
+    >
       <img src={recipe.image} alt={recipe.name} />
       <Content>
+        <ActionButtons>
+          {handleEdit && (
+            <button title="Editar" onClick={() => handleEdit(recipe.id)}>
+              <FiEdit2 />
+            </button>
+          )}
+          {handleDelete && (
+            <button title="Excluir" onClick={() => handleDelete(recipe.id)}>
+              <FiTrash />
+            </button>
+          )}
+        </ActionButtons>
         <div>
           <h2>{recipe.name}</h2>
           <p>{removeMd(recipe.description)}</p>
