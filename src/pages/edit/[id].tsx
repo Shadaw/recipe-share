@@ -20,16 +20,43 @@ export type FormProps = {
   image: File[];
 };
 
-export default function New() {
+type Recipe = {
+  id: string;
+  name: string;
+  description: string;
+  difficulty: string;
+  time: number;
+  image: string;
+  user: {
+    name: string;
+    email: string;
+  };
+  updated_at: string;
+  created_at: string;
+};
+
+type EditProps = {
+  recipe: Recipe;
+};
+
+export default function Edit({ recipe }: EditProps) {
   const router = useRouter();
   const { token } = useAuth();
 
   const { register, handleSubmit } = useForm<FormProps>({
-    mode: 'onChange',
+    defaultValues: {
+      name: recipe.name,
+      description: recipe.description,
+      difficulty: recipe.difficulty,
+      time: recipe.time,
+    },
   });
 
-  const handleCreateNewRecipe: SubmitHandler<FormProps> = useCallback(
+  const handleUpdateRecipe: SubmitHandler<FormProps> = useCallback(
     async data => {
+      console.log('teste');
+      console.log(data);
+
       try {
         const formData = new FormData();
         formData.append('name', data.name);
@@ -38,37 +65,34 @@ export default function New() {
         formData.append('time', String(data.time));
         formData.append('image', data.image[0]);
 
-        await api.post('/recipes', formData, {
+        await api.put(`/recipes/${recipe.id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        router.push('/recipes');
+        router.push('/my_recipes');
       } catch {
         console.log('erro');
       }
     },
-    [token, router],
+    [router, token, recipe.id],
   );
 
   return (
     <>
       <Head>
-        <title>Nova receita | RecipesShare</title>
+        <title>Editar receita | RecipesShare</title>
       </Head>
 
       <Container>
-        <h1>Nova receita</h1>
-        <form
-          onSubmit={handleSubmit(handleCreateNewRecipe)}
-          encType="multipart/form-data"
-        >
-          <ImageUpload register={register} />
+        <h1>Editar receita</h1>
+        <form onSubmit={handleSubmit(handleUpdateRecipe)}>
+          <ImageUpload value={recipe.image} register={register} />
 
           <label>
             Nome da receita
-            <input {...register('name', { required: true })} type="text" />
+            <input {...register('name')} type="text" />
           </label>
 
           <TextareaWithPreview label="Descrição" register={register} />
@@ -76,7 +100,7 @@ export default function New() {
           <div>
             <label>
               Dificuldade
-              <select {...register('difficulty', { required: true })}>
+              <select {...register('difficulty')}>
                 <option value="easy">Fácil</option>
                 <option value="medium">Médio</option>
                 <option value="hard">Difícil</option>
@@ -85,7 +109,7 @@ export default function New() {
             <label>
               Tempo
               <input
-                {...register('time', { required: true })}
+                {...register('time')}
                 placeholder="em minutos..."
                 type="text"
               />
@@ -93,7 +117,7 @@ export default function New() {
           </div>
 
           <Footer>
-            <button type="submit">Criar</button>
+            <button type="submit">Editar</button>
           </Footer>
         </form>
       </Container>
@@ -101,7 +125,12 @@ export default function New() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  params,
+}) => {
+  const id = params?.id;
+
   const token = req.cookies['@RecipesShare:token'];
 
   if (!token) {
@@ -113,7 +142,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     };
   }
 
+  const response = await api.get(`/recipes/${id}`);
+
   return {
-    props: {},
+    props: {
+      recipe: response.data,
+    },
   };
 };

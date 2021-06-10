@@ -20,6 +20,11 @@ const Dropdown = ({ children }: DropdownProps) => {
     signOut();
   }, [signOut]);
 
+  const handleRedirectToMyRecipes = useCallback(() => {
+    setIsOpen(false);
+    push('/my_recipes');
+  }, [push]);
+
   const handleRedirectToNewRecipe = useCallback(() => {
     setIsOpen(false);
     push('/new');
@@ -39,7 +44,7 @@ const Dropdown = ({ children }: DropdownProps) => {
             <FaUser />
             <p>Meu perfil</p>
           </div>
-          <div onClick={handleRedirectToNewRecipe}>
+          <div onClick={handleRedirectToMyRecipes}>
             <FaBook />
             <p>Minhas Receitas</p>
           </div>

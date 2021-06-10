@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  background-color: var(--gray);
+type ContainerProps = {
+  redirect: boolean;
+};
+
+export const Container = styled.div<ContainerProps>`
+  background-color: var(--zero);
   border: 1px solid var(--gray-200);
   height: 200px;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: ${({ redirect }) => (redirect ? 'pointer' : 'normal')};
 
   display: flex;
 
@@ -24,6 +28,7 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 2rem 1rem;
+  position: relative;
 
   h2 {
     font-size: 1.5rem;
@@ -65,6 +70,34 @@ export const Information = styled.div`
     svg {
       color: var(--negative);
       margin-right: 10px;
+    }
+  }
+`;
+
+export const ActionButtons = styled.div`
+  position: absolute;
+  right: 1rem;
+  display: flex;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    background: var(--gray-900);
+    color: var(--zero);
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 2px;
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+
+    & + button {
+      margin-left: 10px;
     }
   }
 `;
