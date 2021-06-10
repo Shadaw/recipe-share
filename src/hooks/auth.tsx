@@ -8,6 +8,7 @@ import {
 import { parseCookies, setCookie, destroyCookie } from 'nookies';
 
 import api from 'services/api';
+import { useRouter } from 'next/router';
 
 type AuthState = {
   token: string;
@@ -33,6 +34,8 @@ type AuthProviderProps = {
 };
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  const router = useRouter();
+
   const [data, setData] = useState<AuthState>(() => {
     const cookies = parseCookies();
 
@@ -71,7 +74,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     destroyCookie(null, '@RecipesShare:user');
 
     setData({} as AuthState);
-  }, []);
+
+    router.push('/');
+  }, [router]);
 
   return (
     <AuthContext.Provider
