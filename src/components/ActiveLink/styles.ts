@@ -1,42 +1,49 @@
 import styled, { css } from 'styled-components';
 
-interface NavItemProps {
-  active?: boolean;
-}
+type ItemProps = {
+  active: boolean;
+};
 
-export const NavItem = styled.a<NavItemProps>`
+export const Item = styled.a<ItemProps>`
   display: inline-block;
   position: relative;
-  padding: 0 0.5rem;
-  height: 5rem;
-  line-height: 5rem;
+  text-decoration: none;
   color: var(--negative);
-  cursor: pointer;
-
-  transition: color 0.2s;
+  font-weight: bold;
+  font-size: 1rem;
 
   & + a {
     margin-left: 2rem;
   }
 
-  &:hover {
-    color: var(--negative);
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    border-radius: 5px;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background: var(--primary);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
   }
 
   ${({ active }) =>
     active &&
     css`
-      color: var(--negative);
-      font-weight: bold;
+      &:after {
+        transform: scaleX(1);
+      }
+    `}
 
-      &::after {
-        content: '';
-        height: 3px;
-        width: 100%;
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        background: var(--primary);
+  ${({ active }) =>
+    !active &&
+    css`
+      &:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
       }
     `}
 `;

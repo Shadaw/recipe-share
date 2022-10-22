@@ -7,7 +7,6 @@ import {
   FiTrash,
   FiEdit2,
 } from 'react-icons/fi';
-import removeMd from 'remove-markdown';
 
 import { Container, Content, Information, ActionButtons } from './styles';
 
@@ -81,7 +80,6 @@ const RecipeCard = ({
         </ActionButtons>
         <div>
           <h2>{recipe.name}</h2>
-          <p>{removeMd(recipe.description)}</p>
         </div>
         <Information>
           <span>

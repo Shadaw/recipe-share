@@ -42,7 +42,7 @@ const Edit = ({ recipe }: EditProps) => {
   const router = useRouter();
   const { token } = useAuth();
 
-  const { register, handleSubmit } = useForm<FormProps>({
+  const { register, handleSubmit, control } = useForm<FormProps>({
     defaultValues: {
       name: recipe.name,
       description: recipe.description,
@@ -94,7 +94,7 @@ const Edit = ({ recipe }: EditProps) => {
             <input {...register('name')} type="text" />
           </label>
 
-          <TextareaWithPreview label="Descrição" register={register} />
+          <TextareaWithPreview label="Descrição" control={control} />
 
           <div>
             <label>

@@ -35,22 +35,6 @@ export const Content = styled.div`
     color: var(--negative);
     margin-bottom: 10px;
   }
-
-  p {
-    color: #777777;
-    margin-bottom: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    line-height: 1rem;
-    max-height: 3rem;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    height: 50px;
-    width: 100%;
-
-    text-overflow: ellipsis;
-  }
 `;
 
 export const Information = styled.div`

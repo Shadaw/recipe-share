@@ -26,6 +26,7 @@ const New = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { isValid },
   } = useForm<FormProps>({
     mode: 'onChange',
@@ -36,6 +37,8 @@ const New = () => {
 
   const handleCreateNewRecipe: SubmitHandler<FormProps> = useCallback(
     async data => {
+      console.log(data);
+
       try {
         const formData = new FormData();
         formData.append('name', data.name);
@@ -77,7 +80,7 @@ const New = () => {
             <input {...register('name', { required: true })} type="text" />
           </label>
 
-          <TextareaWithPreview label="Descrição" register={register} />
+          <TextareaWithPreview label="Descrição" control={control} />
 
           <div>
             <label>

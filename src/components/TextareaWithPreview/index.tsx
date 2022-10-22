@@ -1,54 +1,41 @@
-import { useState } from 'react';
-import { UseFormRegister } from 'react-hook-form';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { Control } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
+import dynamic from 'next/dynamic';
+const QuillNoSSRWrapper = dynamic(import('react-quill'), {
+  ssr: false,
+});
 
+import { modules, formats } from './config';
 import { FormProps } from 'screens/New';
 
-import Markdown from 'components/Markdown';
-
-import { Container, Preview } from './styles';
+import { Container } from './styles';
 
 type TextareaWithPreview = {
   label: string;
-  register: UseFormRegister<FormProps>;
+  control?: Control<FormProps>;
 };
 
 export const TextareaWithPreview = ({
   label,
-  register,
+  control,
 }: TextareaWithPreview) => {
-  const [showPreview, setShowPreview] = useState(false);
-  const [preview, setPreview] = useState('');
-
   return (
     <Container>
-      <label>
-        {label}
-        {!showPreview && (
-          <textarea
-            rows={10}
-            {...register('description', {
-              required: true,
-              validate: value => {
-                setPreview(value);
-                return true;
-              },
-            })}
-          ></textarea>
+      <label>{label}</label>
+      <Controller
+        control={control}
+        name="description"
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <QuillNoSSRWrapper
+            modules={modules}
+            formats={formats}
+            value={value}
+            onChange={onChange}
+            theme="snow"
+          />
         )}
-      </label>
-      {showPreview && (
-        <Preview>
-          <Markdown>{preview}</Markdown>
-        </Preview>
-      )}
-      <button
-        title="visualizar"
-        type="button"
-        onClick={() => setShowPreview(!showPreview)}
-      >
-        {showPreview ? <FiEyeOff /> : <FiEye />}
-      </button>
+      />
     </Container>
   );
 };

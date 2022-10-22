@@ -18,6 +18,8 @@ export const Content = styled.div`
   nav {
     margin-left: 5rem;
     height: 5rem;
+    display: flex;
+    align-items: center;
   }
 
   button,

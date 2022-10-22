@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import 'react-quill/dist/quill.snow.css';
 
 import AppProvider from 'hooks';
 
