@@ -60,24 +60,3 @@ export const Info = styled.div`
     }
   }
 `;
-
-export const Description = styled.div`
-  color: #626262;
-
-  h1 {
-    font-size: 26px;
-    color: #303030;
-  }
-
-  h2 {
-    margin-bottom: 10px;
-    color: #404040;
-  }
-
-  ul,
-  ol {
-    margin-left: 20px;
-    line-height: 20px;
-    margin-bottom: 10px;
-  }
-`;

@@ -1,21 +1,22 @@
 import { ReactNode } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Link, { LinkProps } from 'next/link';
+import { useRouter } from 'next/dist/client/router';
 
-import { Item } from './styles';
+import { NavItem } from './styles';
 
-type ActiveLinkProps = {
-  href: string;
+interface ActiveLinkProps extends LinkProps {
   children: ReactNode;
-};
+}
 
-export const ActiveLink = ({ href, children }: ActiveLinkProps) => {
+const ActiveLink = ({ children, ...rest }: ActiveLinkProps) => {
   const { asPath } = useRouter();
-  const active = asPath === href;
+  const active = asPath === rest.href;
 
   return (
-    <Link href={href} passHref>
-      <Item active={active}>{children}</Item>
+    <Link {...rest}>
+      <NavItem active={active}>{children}</NavItem>
     </Link>
   );
 };
+
+export default ActiveLink;

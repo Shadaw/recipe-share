@@ -1,5 +1,5 @@
 import SignInButton from 'components/SignInButton';
-import { ActiveLink } from 'components/ActiveLink';
+import ActiveLink from 'components/ActiveLink';
 
 import { Container, Content } from './styles';
 

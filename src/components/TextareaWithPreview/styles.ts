@@ -4,30 +4,38 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
 
   label {
     width: 100%;
-    margin: 0 !important;
   }
 
-  .quill {
-    width: 100%;
-    margin-top: 10px;
-    background: var(--zero);
+  button {
+    margin-top: 0rem;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: var(--zero);
+    margin-top: -1rem;
 
-    .ql-toolbar.ql-snow {
-      border-top-right-radius: 5px;
-      border-top-left-radius: 5px;
-      border-color: var(--gray-200);
-      background-color: #fdfdfd;
-    }
-
-    .ql-container.ql-snow {
-      border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 5px;
-      border-color: var(--gray-200);
-      min-height: 200px;
+    svg {
+      font-size: 1.2rem;
     }
   }
+`;
+
+export const Preview = styled.div`
+  width: 100%;
+  border: 1px solid var(--gray-200);
+  padding: 10px;
+  border-radius: 5px;
+  min-height: 212px;
+  background-color: var(--zero);
+
+  margin-top: calc(-2rem + 5px);
+  margin-bottom: 2rem;
 `;

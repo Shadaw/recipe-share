@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import { FiCalendar, FiClock, FiThumbsUp } from 'react-icons/fi';
 
 import Comments from 'components/Comments';
+import Markdown from 'components/Markdown';
 
-import { Container, Info, Description } from './styles';
+import { Container, Info } from './styles';
 
 type difficultyOptions = {
   [key: string]: string;
@@ -72,7 +73,7 @@ const Recipes = ({ recipe }: RecipesProps) => {
 
         <h1>{recipe.name}</h1>
 
-        <Description dangerouslySetInnerHTML={{ __html: recipe.description }} />
+        <Markdown>{recipe.description}</Markdown>
 
         <Comments recipe_id={recipe.id} />
       </Container>
